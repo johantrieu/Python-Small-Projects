@@ -1,31 +1,39 @@
-# step 1: ask user for calculation to be performed
-operation = input("Would you like to add/subtract/multiply/divide? ").lower( )
-# step 2: ask for numbers, alert order matters for subtracting and dividing
-if operation == "subtract" or operation == "divide":
-    print( "You chose { }.".format(operation) )
-    print("Please keep in mind that the order of your numbers matter.")
-num1 = input("What is the first number? ")
-num2 = input("What is the second number? ")
-# step 3: setup try/except for mathematical operation
-try:
-    # step 3a: immediately try to convert numbers input to floats
-    num1, num2 = float(num1), float(num2)
-    # step 3b: perform operation and print result
-    if operation == "add":
-        result = num1 + num2
-        print( "{ } + { } = { }".format(num1, num2, result) )
-    elif operation == "subtract":
-        result = num1 - num2
-        print( "{ } - { } = { }".format(num1, num2, result) )
-    elif operation == "multiply":
-        result = num1 * num2
-        print( "{ } * { } = { }".format(num1, num2, result) )
-    elif operation == "divide":
-        result = num1 / num2
-        print( "{ } / { } = { }".format(num1, num2, result) )
+# Ask user for calculation or exit the program
+while True:
+    userInput = input("Would you like to add/sub(subtract)/mul(multiply)/div(divide)? or Type 'exit' to stop now!").lower( )
+    # Checking user input
+    if userInput == "exit":
+        print("Thank you for your checking!")
+        break
     else:
-    # else will be hit if they didn't chose an option correctly
-        print("Sorry, but '{ }' is not an option.".format(operation) )
-except:
-# steb 3c: print error
-    print("Error: Improper numbers used. Please try again.")
+        if userInput == "sub":
+            print("You wrote {}, it means you chose 'subtract'.".format(userInput))
+        elif userInput =="div":
+            print("You wrote {}, it means you chose 'divide'.".format(userInput))
+        elif userInput =="mul":
+            print("You wrote {}, it means you chose 'multiply'.".format(userInput))
+        elif userInput == "add":
+            print("You chose {}.".format(userInput))
+        else:
+            print("Wrong Input")
+            break
+        try:
+            num1 = float(input("What is the first number? "))
+            num2 = float(input("What is the second number? "))
+            if userInput == "add":
+                result = num1 + num2
+                print( "{} + {} = {}".format(num1, num2, result))
+            elif userInput == "sub":
+                result = num1 - num2
+                print( "{} - {} = {}".format(num1, num2, result))
+            elif userInput == "mul":
+                result = num1 * num2
+                print( "{} * {} = {}".format(num1, num2, result))
+            elif userInput == "div":
+                result = num1 / num2
+                print( "{} / {} = {}".format(num1, num2, result))
+            else:
+                print("Sorry, but '{}' is not an option.".format(userInput))
+        except:
+            print("Error: Input problem, please try again!")
+            break
